@@ -15,8 +15,6 @@ return new class extends Migration
             $table->ulid(column: 'id')->primary();
             $table->string(column: 'name', length: 255);
             $table->foreignId('creator_id')->references(column: 'id')->on(table: 'users');
-            
-
             $table->timestamps();
 
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create(table: 'categories', callback: function (Blueprint $table) {
             $table->id();
-            $table->foreignUlid(column: 'board')->references(column: 'id')->on(table: 'boards');
+            $table->foreignUlid(column: 'board_id')->references(column: 'id')->on(table: 'boards');
             $table->string(column: 'name', length: 255);
             $table->timestamps();
         });
@@ -24,6 +24,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table(table: 'categories', callback: function(Blueprint $table): void {
+            $table->dropForeign(index: ['board_id']);
+        });
         Schema::dropIfExists('categories');
     }
 };
