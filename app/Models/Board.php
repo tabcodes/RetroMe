@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Board extends Model
 {
-    use HasUlids;
+    use HasUlids, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,8 @@ class Board extends Model
      * Summary of categories
      * @return HasMany<Category, Board>
      */
-    public function categories(): HasMany {
+    public function categories(): HasMany
+    {
         return $this->hasMany(Category::class);
     }
 
@@ -36,15 +38,18 @@ class Board extends Model
      * Summary of topics
      * @return HasMany<Topic, Board>
      */
-    public function topics(): HasMany {
+    public function topics(): HasMany
+    {
         return $this->hasMany(Topic::class);
     }
-    
+
     /**
      * Summary of creator
      * @return BelongsTo<User, Board>
      */
-    public function creator(): BelongsTo {
+    public function creator(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'creator_id');
     }
+
 }
