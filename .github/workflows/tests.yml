@@ -37,6 +37,9 @@ jobs:
       - name: Build Assets
         run: npm run build
 
+      - name: Type checking
+        run: tsc --noEmit
+
       - name: Create SQLite DB
         run: touch ./database/database.sqlite
 
