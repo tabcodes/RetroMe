@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId(column: 'category_id')->references(column: 'id')->on(table: 'categories');
             $table->foreignId(column: 'creator_id')->nullable()->references(column: 'id')->on(table: 'users');
             $table->string(column: 'content', length: 1000);
-            $table->text(column: 'notes');
+            $table->text(column: 'notes')->nullable();
             $table->timestamps();
         });
     }
