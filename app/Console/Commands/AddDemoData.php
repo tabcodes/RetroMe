@@ -23,7 +23,7 @@ class AddDemoData extends Command
      *
      * @var string
      */
-    protected $description = 'Adds the test user, a board with several categories and topics each.';
+    protected $description = 'Adds the test user, and a board with several categories and topics each.';
 
     /**
      * Execute the console command.
@@ -47,8 +47,5 @@ class AddDemoData extends Command
             ->has(Topic::factory()->for($user, 'creator')->for($board, 'board')->count(3))
             ->count(3)
             ->create();
-
-
-
     }
 }
