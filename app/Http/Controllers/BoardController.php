@@ -12,7 +12,7 @@ class BoardController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -20,7 +20,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Boards/Create');
     }
 
     /**
@@ -28,7 +28,16 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $board = Board::create([
+            'name' => $v['name'],
+            'creator' => $request->user(),
+        ]);
+
+        return redirect()->route('boards.index')->with('success', 'Board created!');
     }
 
     /**
@@ -36,7 +45,7 @@ class BoardController extends Controller
      */
     public function show(Board $board)
     {
-        //
+
     }
 
     /**
@@ -52,7 +61,7 @@ class BoardController extends Controller
      */
     public function update(Request $request, Board $board)
     {
-        //
+        
     }
 
     /**
