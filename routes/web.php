@@ -13,10 +13,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::get('boards', [BoardController::class, 'index'])->name('boards.index');
-    Route::post('boards', [BoardController::class, 'store']);
-
     Route::get('board/create', [BoardController::class, 'create']);
+    Route::get('boards', [BoardController::class, 'index'])->name('boards.index');
+    Route::get('boards/{board}', [BoardController::class, 'edit']);
+    Route::post('boards', [BoardController::class, 'store']);
+    Route::delete('boards/{board}', [BoardController::class, 'destroy']);
+    Route::put('boards/{board}', [BoardController::class, 'update']);
 });
 
 require __DIR__.'/settings.php';
