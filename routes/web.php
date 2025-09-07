@@ -13,7 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-    Route::get('boards', [BoardController::class, 'index']);
+    Route::get('boards', [BoardController::class, 'index'])->name('boards.index');
+    Route::post('boards', [BoardController::class, 'store']);
+
     Route::get('board/create', [BoardController::class, 'create']);
 });
 
