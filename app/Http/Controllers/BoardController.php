@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 use App\Models\Board;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class BoardController extends Controller
 {
@@ -13,7 +14,8 @@ class BoardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Boards/Index');
+        return Inertia::render('Boards/Index',
+        ['boards' => Auth::user()->boards]);
     }
 
     /**
@@ -35,7 +37,7 @@ class BoardController extends Controller
 
         $board = Board::create([
             'name' => $v['name'],
-            'creator' => $request->user(),
+            'creator_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('boards.index')->with('success', 'Board created!');
