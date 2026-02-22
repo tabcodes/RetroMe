@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create(table: 'topics', callback: function (Blueprint $table) {
             $table->id();
             $table->foreignUlid(column: 'board_id')->references(column: 'id')->on(table: 'boards');
-            $table->foreignId(column: 'category_id')->references(column: 'id')->on(table: 'categories');
+            $table->foreignId(column: 'category_id')->references(column: 'id')->on(table: 'categories')->onDelete('cascade');
             $table->foreignId(column: 'creator_id')->nullable()->references(column: 'id')->on(table: 'users');
             $table->string(column: 'content', length: 1000);
             $table->text(column: 'notes')->nullable();

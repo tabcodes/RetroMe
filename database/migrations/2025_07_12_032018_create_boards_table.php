@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create(table: 'boards', callback: function (Blueprint $table) {
             $table->ulid(column: 'id')->primary();
             $table->string(column: 'name', length: 255);
-            $table->foreignId('creator_id')->references(column: 'id')->on(table: 'users');
+            $table->foreignId('creator_id')->references(column: 'id')->on(table: 'users')->onDelete('cascade');
             $table->timestamps();
 
         });
