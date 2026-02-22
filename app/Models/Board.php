@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Models\Topic;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Board extends Model
 {
@@ -23,6 +24,13 @@ class Board extends Model
         'name',
         'creator_id',
     ];
+
+    protected function casts() {
+       return [
+            'created_at' => 'datetime:Y-m-d g:iA',
+            'updated_at' => 'datetime:Y-m-d g:iA',
+        ];
+    } 
 
     /**
      * Summary of categories
@@ -50,4 +58,6 @@ class Board extends Model
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+
+
 }
